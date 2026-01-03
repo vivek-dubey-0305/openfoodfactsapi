@@ -1,0 +1,150 @@
+# OpenFoodFacts API REST Requests Collection
+# Base URL: http://localhost:5000
+# All requests are GET unless specified otherwise.
+
+## Root Endpoint
+### 1. Check API Status
+- URL: /
+- Description: Returns API status and MongoDB connection info.
+- Sample Output: {"status": "OK", "mongo": "<MongoDB connection string>"}
+
+## Products Endpoints
+
+### 2. Get All Products (Default: 50 products, sorted by creation date descending)
+- URL: /products
+- Description: Retrieves the first 50 products.
+- Sample Output: [{"code": "123456789", "lang": "en", "product_name": "Example Product", ...}, ...]
+
+### 3. Get Products with Pagination
+- URL: /products?limit=10&skip=20
+- Description: Retrieves 10 products starting from the 21st (skip 20).
+- Sample Output: Array of 10 product objects.
+
+### 4. Get Product Count Only
+- URL: /products?count=1
+- Description: Returns the total number of products.
+- Sample Output: 150000 (example number)
+
+### 5. Get Short Response (Limited Fields)
+- URL: /products?short=1
+- Description: Returns only code, lang, and product_name fields.
+- Sample Output: [{"code": "123456789", "lang": "en", "product_name": "Example Product"}, ...]
+
+### 6. Text Search Products
+- URL: /products?q=chocolate
+- Description: Searches for products containing "chocolate" in text-indexed fields.
+- Sample Output: Array of products matching the search.
+
+### 7. Filter by Field (Regex, Case Insensitive)
+- URL: /products?product_name=chocolate
+- Description: Filters products where product_name matches "chocolate" (regex).
+- Sample Output: [{"code": "123456789", "product_name": "Dark Chocolate", ...}, ...]
+
+### 8. Filter Indian Products
+- URL: /products?countries=India
+- Description: Filters products from India (note: field is 'countries', not 'country').
+- Sample Output: [{"code": "123456789", "countries": "India", ...}, ...]
+
+### 9. Combine Filters and Pagination
+- URL: /products?countries=India&limit=5&skip=0&short=1
+- Description: Get 5 short Indian products.
+- Sample Output: [{"code": "123456789", "lang": "en", "product_name": "Indian Product"}, ...]
+
+### 10. Complex Filter with Text Search
+- URL: /products?q=organic&countries=France&limit=10
+- Description: Search for organic products from France, limit 10.
+- Sample Output: Array of matching products.
+
+### 11. Get Product by Barcode
+- URL: /product/123456789
+- Description: Retrieves a single product by its barcode.
+- Sample Output: {"code": "123456789", "product_name": "Example Product", ...} or null if not found.
+
+## Stats Endpoints
+
+### 12. Get Products Stats Info
+- URL: /products/stats/info
+- Description: Returns monthly/yearly stats on products with nutrient levels.
+- Sample Output: [{"dateyear": 2023, "datemonth": 5, "count": 1000, "saltlevels": "moderate", ...}, ...]
+
+### 13. Get Stats Page (HTML)
+- URL: /stats
+- Description: Returns an HTML page with stats visualization.
+- Sample Output: HTML content with graphs and charts.
+
+## Metadata Endpoints
+
+### 14. Get All Brands
+- URL: /products/brands
+- Description: Lists all unique brands.
+- Sample Output: ["Brand1", "Brand2", ...]
+
+### 15. Get Brands Count
+- URL: /products/brands?count=1
+- Description: Returns the number of unique brands.
+- Sample Output: 500
+
+### 16. Search Brands
+- URL: /products/brands?query=nestle
+- Description: Filters brands matching "nestle" (regex).
+- Sample Output: ["Nestle", "Nestle Waters", ...]
+
+### 17. Get All Categories
+- URL: /products/categories
+- Description: Lists all unique categories.
+- Sample Output: ["Beverages", "Snacks", ...]
+
+### 18. Get Categories Count
+- URL: /products/categories?count=1
+- Description: Returns the number of unique categories.
+- Sample Output: 200
+
+### 19. Search Categories
+- URL: /products/categories?query=dairy
+- Description: Filters categories matching "dairy".
+- Sample Output: ["Dairy products", "Dairy desserts", ...]
+
+### 20. Get All Countries
+- URL: /products/countries
+- Description: Lists all unique countries.
+- Sample Output: ["France", "United States", "India", ...]
+
+### 21. Get Countries Count
+- URL: /products/countries?count=1
+- Description: Returns the number of unique countries.
+- Sample Output: 150
+
+### 22. Search Countries
+- URL: /products/countries?query=india
+- Description: Filters countries matching "india".
+- Sample Output: ["India"]
+
+### 23. Get All Additives
+- URL: /products/additives
+- Description: Lists all unique additives tags.
+- Sample Output: ["en:e150a", "en:e330", ...]
+
+### 24. Get Additives Count
+- URL: /products/additives?count=1
+- Description: Returns the number of unique additives.
+- Sample Output: 300
+
+### 25. Search Additives
+- URL: /products/additives?query=e150
+- Description: Filters additives matching "e150".
+- Sample Output: ["en:e150a", "en:e150d", ...]
+
+### 26. Get All Allergens
+- URL: /products/allergens
+- Description: Lists all unique allergens tags.
+- Sample Output: ["en:gluten", "en:milk", ...]
+
+### 27. Get Allergens Count
+- URL: /products/allergens?count=1
+- Description: Returns the number of unique allergens.
+- Sample Output: 50
+
+### 28. Search Allergens
+- URL: /products/allergens?query=gluten
+- Description: Filters allergens matching "gluten".
+- Sample Output: ["en:gluten"]
