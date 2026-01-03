@@ -1,37 +1,132 @@
-# Node
+############################################
+# Python virtual environments (ALL variants)
+############################################
+.venv/
+venv/
+env/
+ENV/
+.myvenv/
+myvenv/
+venv.*/
+env.*/
+.python-version
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+############################################
+# Node.js dependencies & package managers
+############################################
 node_modules/
 npm-debug.log*
 yarn-debug.log*
-pnpm-lock.yaml
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.npm/
+.yarn/
 
-# Python
-__pycache__/
-*.py[cod]
-*.env
-.env*
-.venv/
-venv/
-
-# Build
-dist/
-build/
-.next/
-out/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-
+############################################
 # Logs
+############################################
 logs/
 *.log
+*.log.*
+debug.log
+error.log
 
-# Secrets
-*.pem
-*.key
-*.crt
+############################################
+# Build / output directories
+############################################
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
+.tmp/
+.temp/
+
+############################################
+# Runtime / process files
+############################################
+*.pid
+*.seed
+*.pid.lock
+
+############################################
+# Environment / secrets (CRITICAL)
+############################################
+.env
+.env.*
+.env.*.local
+.env.local
+.env.production
+.env.development
+.env.test
+
+############################################
+# IDE / Editors
+############################################
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.code-workspace
+
+############################################
+# OS generated files
+############################################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+############################################
+# Frontend specific
+############################################
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.next/
+frontend/.cache/
+
+############################################
+# Backend specific
+############################################
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.cache/
+
+############################################
+# Testing / coverage
+############################################
+.coverage
+.coverage.*
+htmlcov/
+pytest_cache/
+.nyc_output/
+
+############################################
+# Docker / containers
+############################################
+docker-data/
+docker-volumes/
+*.tar
+*.tar.gz
+
+############################################
+# Misc / safety
+############################################
+*.bak
+*.tmp
+*.old
+*.orig
+*.retry
+*.swp
